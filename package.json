@@ -1,7 +1,7 @@
 {
-	"name": "eleventy-base-blog",
-	"version": "8.0.0",
-	"description": "A starter repository for a blog web site using the Eleventy site generator.",
+	"name": "override.online",
+	"version": "1.0.0",
+	"description": "CrashOverride's Blog and Website built with Eleventy and nes.css",
 	"scripts": {
 		"build": "npx @11ty/eleventy",
 		"build-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/",
@@ -12,25 +12,21 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/11ty/eleventy-base-blog.git"
+		"url": "git://github.com/daxorinator/daxorinator.github.io.git"
 	},
 	"author": {
-		"name": "Zach Leatherman",
-		"email": "zachleatherman@gmail.com",
-		"url": "https://zachleat.com/"
+		"name": "Seán Kelly",
+		"email": "sean@override.online",
+		"url": "https://override.online/"
 	},
 	"license": "MIT",
 	"engines": {
 		"node": ">=14"
 	},
-	"funding": {
-		"type": "opencollective",
-		"url": "https://opencollective.com/11ty"
-	},
 	"bugs": {
-		"url": "https://github.com/11ty/eleventy-base-blog/issues"
+		"url": "https://github.com/daxorinator/daxorinator.github.io/issues"
 	},
-	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
+	"homepage": "https://github.com/daxorinator/daxorinator.github.io/",
 	"devDependencies": {
 		"@11ty/eleventy": "2.0.0-beta.1",
 		"@11ty/eleventy-img": "^2.0.1",
