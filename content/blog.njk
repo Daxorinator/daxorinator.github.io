@@ -1,0 +1,13 @@
+---
+layout: layouts/home.njk
+eleventyNavigation:
+  key: Blog
+  order: 2
+  color: --success
+---
+<div class="nes-container is-dark is-centered with-title">
+  <h1 class="title">Blog Posts</h1>
+
+  {% set postslist = collections.posts %}
+  {% include "postslist.njk" %}
+</div>
