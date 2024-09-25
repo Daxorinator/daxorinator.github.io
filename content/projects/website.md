@@ -1,5 +1,5 @@
 ---
 title: Website
-description: Website Project
+description: My Website
 date: 2024-09-21
 ---
