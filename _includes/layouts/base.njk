@@ -25,13 +25,13 @@
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			<h1><a href="/" class="home-link">{{ metadata.title }}</a></h3>
+			<h1><a href="/" class="home-link">{{ metadata.title }}</a></h1>
 
 			<nav>
 				<h4 class="visually-hidden">Top level navigation menu</h4>
 				<ul class="nav">
 				{%- for entry in collections.all | eleventyNavigation %}
-					<li class="nav-item nav-text" style="font-size: 1.2em;"><a href="{{ entry.url }}" style="color: var( {{ entry.color }} ) !important" {% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
+					<li class="nav-item nav-text" style="font-size: 1.2rem;"><a href="{{ entry.url }}" style="color: var( {{ entry.color }} ) !important" {% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
 				{%- endfor %}
 				</ul>
 			</nav>
