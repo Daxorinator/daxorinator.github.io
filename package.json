@@ -29,16 +29,14 @@
 	},
 	"homepage": "https://github.com/daxorinator/daxorinator.github.io/",
 	"devDependencies": {
-		"@11ty/eleventy": "3.0.0",
-		"@11ty/eleventy-img": "^5.0.0",
-		"@11ty/eleventy-navigation": "^0.3.5",
-		"@11ty/eleventy-plugin-rss": "^1.2.0",
-		"@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
+		"@11ty/eleventy": "^3.0.0",
+		"@11ty/eleventy-img": "^6.0.0",
+		"@11ty/eleventy-navigation": "^1.0.0",
+		"@11ty/eleventy-plugin-rss": "^2.0.0",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
 		"luxon": "^3.2.1",
-		"markdown-it-anchor": "^8.6.6"
+		"markdown-it-anchor": "^9.0.0"
 	},
 	"dependencies": {
-		"@11ty/eleventy-upgrade-help": "^3.0.1",
-		"nes.css": "^2.3.0"
 	}
 }
