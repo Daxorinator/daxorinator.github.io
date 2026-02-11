@@ -1,16 +1,18 @@
-const { DateTime } = require("luxon");
-const markdownItAnchor = require("markdown-it-anchor");
+import { DateTime } from "luxon";
+import markdownItAnchor from "markdown-it-anchor";
+import EleventySyntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
+import { EleventyRenderPlugin, EleventyHtmlBasePlugin } from "@11ty/eleventy";
+import EleventyNavigationPlugin from "@11ty/eleventy-navigation";
+import Image, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import EleventyRssPlugin from "@11ty/eleventy-plugin-rss";
+// import UpgradeHelper from "@11ty/eleventy-upgrade-help";
 
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const pluginNavigation = require("@11ty/eleventy-navigation");
-const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
-
-module.exports = function(eleventyConfig) {
+export default async function(eleventyConfig) {
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
-		"./public/": "/"
+		"./public/": "/",
+		"./img": "/img/"
 	});
 
 	// Run Eleventy when these files change:
@@ -19,17 +21,35 @@ module.exports = function(eleventyConfig) {
 	// Watch content images for the image pipeline.
 	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpeg}");
 
-	// App plugins
-	eleventyConfig.addPlugin(require("./eleventy.config.drafts.js"));
-	eleventyConfig.addPlugin(require("./eleventy.config.images.js"));
-
 	// Official plugins
-	eleventyConfig.addPlugin(pluginRss);
-	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
+	// eleventyConfig.addPlugin(UpgradeHelper)
+	eleventyConfig.addPlugin(EleventyNavigationPlugin);
+	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+	eleventyConfig.addPlugin(EleventyRenderPlugin)
+	eleventyConfig.addPlugin(EleventyRssPlugin);
+	
+	eleventyConfig.addPlugin(EleventySyntaxHighlightPlugin, {
 		preAttributes: { tabindex: 0 }
 	});
-	eleventyConfig.addPlugin(pluginNavigation);
-	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		// which file extensions to process
+		extensions: "html",
+
+		// Add any other Image utility options here:
+
+		// optional, output image formats
+		formats: ["auto"],
+
+		outputDir: "./_site/img/",
+		// urlPath: "/img/",
+
+		// optional, attributes assigned on <img> override these values.
+		defaultAttributes: {
+			loading: "lazy",
+			decoding: "async",
+		},
+	});
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
@@ -84,6 +104,30 @@ module.exports = function(eleventyConfig) {
 			level: [1,2,3,4],
 			slugify: eleventyConfig.getFilter("slugify")
 		});
+	});
+
+	eleventyConfig.addShortcode("image", async function (src, alt, widths = [300, 600], sizes = "100vh") {
+		let metadata = await Image(src, {
+			widths,
+			formats: ["avif", "jpeg"],
+		});
+
+		let imageAttributes = {
+			alt,
+			sizes,
+			loading: "lazy",
+			decoding: "async",
+			"eleventy:ignore": ""
+		};
+
+		// You bet we throw an error on a missing alt (alt="" works okay)
+		return Image.generateHTML(metadata, imageAttributes);
+	});
+
+	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
+		if(data.draft) {
+			return false;
+		}
 	});
 
 	// Features to make your build faster (when you need them)
