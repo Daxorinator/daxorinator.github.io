@@ -2,26 +2,26 @@
 {% for project in projectslist %}
 	<li class="projectlist-item{% if project.url == url %} postlist-item-active{% endif %}">
 		
-		<h4 style="grid-area: 1 / 1 / 2 / 5; text-align: left; margin: 0 0 0 0;">
-			<a href="{{ project.url }}" class="postlist-link">
+		<h4 style="grid-area: 1 / 1 / 2 / 6; text-align: left; margin: 0; display: flex; align-items: center; gap: 0.5em;">
+			<a href="{{ project.url }}" class="postlist-link" style="flex-basis: auto;">
 				{% if project.data.title %}
 					{{ project.data.title }}
 				{% else %}
 					<code>{{ project.url }}</code>
 				{% endif %}
 			</a>
+			{% if project.data.github %}
+			<a href="{{ project.data.github }}" target="_blank" style="display: inline-block; width: 32px; height: 32px; flex-shrink: 0;">
+				<i class="nes-icon github is-small" style="margin: 0; transform: scale(1.0); transform-origin: top left;"></i>
+			</a>
+			{% endif %}
 		</h4>
 		
-		{% if project.data.github %}
-		<a style="grid-area: 1 / 5 / 3 / 6;" href="{{ project.data.github }}" target="_blank">
-			<i class="nes-icon github is-large"></i>
-		</a>
-		{% endif %}
-		
-		<p style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
-			{{ project.data.description }}
-		</p>
-		{# <time class="postlist-date" datetime="{{ project.date | htmlDateString }}">{{ project.date | readableDate("LLLL yyyy") }}</time> #}
+		<div style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
+			{{ project.data.description | safe }}
+			<br>
+			<time class="postlist-date" datetime="{{ project.date | htmlDateString }}"><i>Created: {{ project.date | readableDate("LLLL yyyy") }}</i></time>
+		</div>
 	</li>
 {% endfor %}
 </ul>
