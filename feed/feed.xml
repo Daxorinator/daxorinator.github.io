@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:base="en">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://override.online/">
 	<title>CrashOverride&#39;s Website</title>
 	<subtitle>CrashOverride&#39;s Website and Blog - Electronic and Computer Engineering shenanigans</subtitle>
 	<link href="https://override.online/feed/feed.xml" rel="self"/>
@@ -18,7 +18,7 @@
 		<id>https://override.online/blog/fourthpost/</id>
 		<content type="html">&lt;p&gt;Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.&lt;/p&gt;
 &lt;p&gt;Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://override.online/img/IdthKOzqFA-300.avif 300w&quot; sizes=&quot;100vh&quot;&gt;&lt;img src=&quot;https://override.online/img/IdthKOzqFA-300.jpeg&quot; alt=&quot;A possum parent and two possum kids hanging from the iconic red balloon&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; eleventy:ignore=&quot;&quot; width=&quot;300&quot; height=&quot;587&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://override.online/img/IdthKOzqFA-300.avif 300w&quot; sizes=&quot;(min-width: 60em) 900px, 100vw&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://override.online/img/IdthKOzqFA-300.webp 300w&quot; sizes=&quot;(min-width: 60em) 900px, 100vw&quot;&gt;&lt;img alt=&quot;A possum parent and two possum kids hanging from the iconic red balloon&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; eleventy:ignore=&quot;&quot; src=&quot;https://override.online/img/IdthKOzqFA-300.jpeg&quot; width=&quot;300&quot; height=&quot;587&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;h2 id=&quot;section-header&quot; tabindex=&quot;-1&quot;&gt;Section Header &lt;a class=&quot;header-anchor&quot; href=&quot;https://override.online/blog/fourthpost/#section-header&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.&lt;/p&gt;
 </content>
