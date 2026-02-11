@@ -7,10 +7,10 @@
 		<meta name="description" content="CrashOverride&#39;s Website and Blog - Electronic and Computer Engineering shenanigans">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="CrashOverride&#39;s Website">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="CrashOverride&#39;s Website">
-		<meta name="generator" content="Eleventy v2.0.0">
+		<meta name="generator" content="Eleventy v3.0.0">
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 
 		<link rel="stylesheet" href="/css/index.css">
 
@@ -21,15 +21,15 @@
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			<h1><a href="/" class="home-link">CrashOverride&#39;s Website</a></h3>
+			<h1><a href="/" class="home-link">CrashOverride&#39;s Website</a></h1>
 
 			<nav>
 				<h4 class="visually-hidden">Top level navigation menu</h4>
 				<ul class="nav">
-					<li class="nav-item nav-text" style="font-size: 1.2em;"><a href="/" style="color: var( --primary ) !important" >Home</a></li>
-					<li class="nav-item nav-text" style="font-size: 1.2em;"><a href="/blog/" style="color: var( --success ) !important" >Blog</a></li>
-					<li class="nav-item nav-text" style="font-size: 1.2em;"><a href="/about/" style="color: var( --warning ) !important" >About Me</a></li>
-					<li class="nav-item nav-text" style="font-size: 1.2em;"><a href="/projects/" style="color: var( --error ) !important"  aria-current="page">Projects</a></li>
+					<li class="nav-item nav-text" style="font-size: 1.2rem;"><a href="/" style="color: var( --primary ) !important">Home</a></li>
+					<li class="nav-item nav-text" style="font-size: 1.2rem;"><a href="/blog/" style="color: var( --success ) !important">Blog</a></li>
+					<li class="nav-item nav-text" style="font-size: 1.2rem;"><a href="/about/" style="color: var( --warning ) !important">About Me</a></li>
+					<li class="nav-item nav-text" style="font-size: 1.2rem;"><a href="/projects/" style="color: var( --error ) !important" aria-current="page">Projects</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -40,64 +40,72 @@
   <h1 class="title">Projects</h1>
 
   
-  <ul reversed class="postlist">
+  <ul reversed="" class="postlist">
 
 	<li class="projectlist-item">
 		
-		<h4 style="grid-area: 1 / 1 / 2 / 5; text-align: left; margin: 0 0 0 0;">
-			<a href="/projects/Grand Star/" class="postlist-link">
+		<h4 style="grid-area: 1 / 1 / 2 / 6; text-align: left; margin: 0; display: flex; align-items: center; gap: 0.5em;">
+			<a href="/projects/Grand Star/" class="postlist-link" style="flex-basis: auto;">
 				
 					Grand Star (rust-wii)
 				
 			</a>
+			
+			<a href="https://github.com/rust-wii/ogc-rs" target="_blank" style="display: inline-block; width: 32px; height: 32px; flex-shrink: 0;">
+				<i class="nes-icon github is-small" style="margin: 0; transform: scale(1.0); transform-origin: top left;"></i>
+			</a>
+			
 		</h4>
 		
-		
-		
-		<p style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
-			another yolk
-		</p>
-		
+		<div style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
+			A set of Rust toolchains and libraries for the Nintendo Wii
+			<br>
+			<time class="postlist-date" datetime="2019-06-02"><i>Created: June 2019</i></time>
+		</div>
 	</li>
 
 	<li class="projectlist-item">
 		
-		<h4 style="grid-area: 1 / 1 / 2 / 5; text-align: left; margin: 0 0 0 0;">
-			<a href="/projects/HDLGen-ChatGPT/" class="postlist-link">
+		<h4 style="grid-area: 1 / 1 / 2 / 6; text-align: left; margin: 0; display: flex; align-items: center; gap: 0.5em;">
+			<a href="/projects/HDLGen-ChatGPT/" class="postlist-link" style="flex-basis: auto;">
 				
 					HDLGen-ChatGPT
 				
 			</a>
+			
+			<a href="https://github.com/Logicademy/HDLGen-ChatGPT" target="_blank" style="display: inline-block; width: 32px; height: 32px; flex-shrink: 0;">
+				<i class="nes-icon github is-small" style="margin: 0; transform: scale(1.0); transform-origin: top left;"></i>
+			</a>
+			
 		</h4>
 		
-		
-		<a style="grid-area: 1 / 5 / 3 / 6;" href="https://github.com/Logicademy/HDLGen-ChatGPT" target="_blank">
-			<i class="nes-icon github is-large"></i>
-		</a>
-		
-		
-		<p style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
+		<div style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
 			HDLGen-ChatGPT is a rapid digital system prototyping tool for capturing design and test specifications, to generate RTL models, testbenches, and EDA Tool projects, using LLMs like ChatGPT for code generation
-		</p>
-		
+			<br>
+			<time class="postlist-date" datetime="2023-09-08"><i>Created: September 2023</i></time>
+		</div>
 	</li>
 
 	<li class="projectlist-item">
 		
-		<h4 style="grid-area: 1 / 1 / 2 / 5; text-align: left; margin: 0 0 0 0;">
-			<a href="/projects/website/" class="postlist-link">
+		<h4 style="grid-area: 1 / 1 / 2 / 6; text-align: left; margin: 0; display: flex; align-items: center; gap: 0.5em;">
+			<a href="/projects/website/" class="postlist-link" style="flex-basis: auto;">
 				
 					Website
 				
 			</a>
+			
+			<a href="https://github.com/daxorinator/daxorinator.github.io" target="_blank" style="display: inline-block; width: 32px; height: 32px; flex-shrink: 0;">
+				<i class="nes-icon github is-small" style="margin: 0; transform: scale(1.0); transform-origin: top left;"></i>
+			</a>
+			
 		</h4>
 		
-		
-		
-		<p style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
-			My Website
-		</p>
-		
+		<div style="grid-area: 2 / 1 / 3 / 5; text-align: left;">
+			This Website! My blog and website, built with the 11ty static site generator. Powered by NES.css and GitHub Actions
+			<br>
+			<time class="postlist-date" datetime="2024-09-21"><i>Created: September 2024</i></time>
+		</div>
 	</li>
 
 </ul>

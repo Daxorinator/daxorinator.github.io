@@ -329,7 +329,7 @@ p:last-child {
 }
 
 p {
-	margin: 0 0 1em 0;
+	margin: 0 0 0 0;
 	font-size: large;
 	line-height: 1.5;
 }
@@ -558,7 +558,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-text {
 	font-family: "Press Start 2P", system-ui;
-	font-size: 0.8em;
+	font-size: 0.8rem;
 }
 
 
