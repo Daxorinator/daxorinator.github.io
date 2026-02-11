@@ -1,30 +1,25 @@
+import path from "node:path";
+import { EleventyRenderPlugin } from "@11ty/eleventy";
+import Image, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import EleventyNavigationPlugin from "@11ty/eleventy-navigation";
+import EleventySyntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
+import EleventyRssPlugin from "@11ty/eleventy-plugin-rss";
+
 import { DateTime } from "luxon";
 import markdownItAnchor from "markdown-it-anchor";
-import EleventySyntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
-import { EleventyRenderPlugin, EleventyHtmlBasePlugin } from "@11ty/eleventy";
-import EleventyNavigationPlugin from "@11ty/eleventy-navigation";
-import Image, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
-import EleventyRssPlugin from "@11ty/eleventy-plugin-rss";
-// import UpgradeHelper from "@11ty/eleventy-upgrade-help";
 
 export default async function(eleventyConfig) {
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
 		"./public/": "/",
-		"./img": "/img/"
 	});
-
-	// Run Eleventy when these files change:
-	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
 	// Watch content images for the image pipeline.
 	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpeg}");
 
 	// Official plugins
-	// eleventyConfig.addPlugin(UpgradeHelper)
 	eleventyConfig.addPlugin(EleventyNavigationPlugin);
-	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 	eleventyConfig.addPlugin(EleventyRenderPlugin)
 	eleventyConfig.addPlugin(EleventyRssPlugin);
 	
@@ -33,21 +28,19 @@ export default async function(eleventyConfig) {
 	});
 
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-		// which file extensions to process
-		extensions: "html",
+		// output image formats
+		formats: ["avif", "webp", "jpeg"],
 
-		// Add any other Image utility options here:
+		// output image widths
+		widths: ["auto"],
 
-		// optional, output image formats
-		formats: ["auto"],
-
-		outputDir: "./_site/img/",
-		// urlPath: "/img/",
-
-		// optional, attributes assigned on <img> override these values.
-		defaultAttributes: {
-			loading: "lazy",
-			decoding: "async",
+		// optional, attributes assigned on <img> nodes override these values
+		htmlOptions: {
+			imgAttributes: {
+				loading: "lazy",
+				decoding: "async",
+			},
+			pictureAttributes: {}
 		},
 	});
 
@@ -106,22 +99,29 @@ export default async function(eleventyConfig) {
 		});
 	});
 
-	eleventyConfig.addShortcode("image", async function (src, alt, widths = [300, 600], sizes = "100vh") {
-		let metadata = await Image(src, {
+	eleventyConfig.addShortcode("image", async function (src, alt, widths = [300, 600, 900], sizes = "(min-width: 60em) 900px, 100vw") {
+		if (alt === undefined) {
+			throw new Error(`Missing \`alt\` on image from: ${src}`);
+		}
+
+		// Resolve relative paths from the template file's directory
+		const inputDir = path.dirname(this.page.inputPath);
+		const resolvedSrc = src.startsWith("./") ? path.join(inputDir, src) : src;
+
+		return Image(resolvedSrc, {
 			widths,
-			formats: ["avif", "jpeg"],
+			formats: ["avif", "webp", "jpeg"],
+			returnType: "html",
+			htmlOptions: {
+				imgAttributes: {
+					alt,
+					sizes,
+					loading: "lazy",
+					decoding: "async",
+					"eleventy:ignore": "",
+				}
+			}
 		});
-
-		let imageAttributes = {
-			alt,
-			sizes,
-			loading: "lazy",
-			decoding: "async",
-			"eleventy:ignore": ""
-		};
-
-		// You bet we throw an error on a missing alt (alt="" works okay)
-		return Image.generateHTML(metadata, imageAttributes);
 	});
 
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
@@ -130,31 +130,16 @@ export default async function(eleventyConfig) {
 		}
 	});
 
-	// Features to make your build faster (when you need them)
-
-	// If your passthrough copy gets heavy and cumbersome, add this line
-	// to emulate the file copy on the dev server. Learn more:
-	// https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
-
-	// eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
-
 	return {
-		// Control which files Eleventy will process
-		// e.g.: *.md, *.njk, *.html, *.liquid
 		templateFormats: [
 			"md",
 			"njk",
 			"html",
-			"liquid"
 		],
 
-		// Pre-process *.md files with: (default: `liquid`)
 		markdownTemplateEngine: "njk",
-
-		// Pre-process *.html files with: (default: `liquid`)
 		htmlTemplateEngine: "njk",
 
-		// These are all optional:
 		dir: {
 			input: "content",         // default: "."
 			includes: "../_includes",  // default: "_includes"
@@ -162,16 +147,6 @@ export default async function(eleventyConfig) {
 			output: "_site"
 		},
 
-		// -----------------------------------------------------------------
-		// Optional items:
-		// -----------------------------------------------------------------
-
-		// If your site deploys to a subdirectory, change `pathPrefix`.
-		// Read more: https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix
-
-		// When paired with the HTML <base> plugin https://www.11ty.dev/docs/plugins/html-base/
-		// it will transform any absolute URLs in your HTML to include this
-		// folder name and does **not** affect where things go in the output folder.
 		pathPrefix: "/",
 	};
 };
