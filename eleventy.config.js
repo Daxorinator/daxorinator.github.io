@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import path from "node:path";
 import { EleventyRenderPlugin } from "@11ty/eleventy";
 import Image, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
@@ -7,12 +8,36 @@ import EleventyRssPlugin from "@11ty/eleventy-plugin-rss";
 
 import { DateTime } from "luxon";
 import markdownItAnchor from "markdown-it-anchor";
+import { PurgeCSS } from "purgecss";
+import CleanCSS from "clean-css";
 
 export default async function(eleventyConfig) {
 	// Copy the contents of the `public` folder to the output folder
-	// For example, `./public/css/` ends up in `_site/css/`
+	// For example, `./public/robots.txt` ends up in `_site/robots.txt`
 	eleventyConfig.addPassthroughCopy({
 		"./public/": "/",
+	});
+
+	// Process CSS: purge unused styles and minify
+	eleventyConfig.on("eleventy.after", async ({ dir }) => {
+		const cssInput = path.resolve("_includes/css/index.css");
+		const cssOutputDir = path.join(dir.output, "css");
+		const cssOutputFile = path.join(cssOutputDir, "index.css");
+
+		const rawCSS = fs.readFileSync(cssInput, "utf-8");
+
+		const purged = await new PurgeCSS().purge({
+			content: [
+				"content/**/*.{njk,md,html}",
+				"_includes/**/*.njk",
+			],
+			css: [{ raw: rawCSS }],
+		});
+
+		const minified = new CleanCSS().minify(purged[0].css);
+
+		fs.mkdirSync(cssOutputDir, { recursive: true });
+		fs.writeFileSync(cssOutputFile, minified.styles);
 	});
 
 	// Watch content images for the image pipeline.
