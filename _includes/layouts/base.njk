@@ -16,11 +16,20 @@
 		{#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
 		<meta name="generator" content="{{ eleventy.generator }}">
 
+		<link rel="preload" href="/fonts/press-start-2p-v16-latin.woff2" as="font" type="font/woff2" crossorigin>
 		<link rel="preload" href="/css/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 		<noscript><link rel="stylesheet" href="/css/index.css"></noscript>
 
 		{#- Internal CSS to optimize for pagespeed insights #}
 		<style>
+			@font-face {
+				font-family: "Press Start 2P";
+				font-style: normal;
+				font-weight: 400;
+				font-display: optional;
+				src: url("/fonts/press-start-2p-v16-latin.woff2") format("woff2");
+			}
+
 			/* Defaults */
 			:root {
 				--font-family: monospace, system-ui;
@@ -149,11 +158,21 @@
 				clear: both
 			}
 
+			h1, h2, h3, h4, h5, h6 {
+				font-family: "Press Start 2P", system-ui;
+			}
+
+			.nav-text {
+				font-family: "Press Start 2P", system-ui;
+				font-size: 1.2rem;
+			}
+
 			header {
 				gap: 1em .5em;
 				flex-wrap: wrap;
 				align-items: center;
-				padding: 1em
+				padding: 1em;
+				min-height: 4.5rem;
 			}
 
 			.home-link {
@@ -217,7 +236,7 @@
 			<h1><a href="/" class="home-link">{{ metadata.title }}</a></h1>
 
 			<nav>
-				<h4 class="visually-hidden">Top level navigation menu</h4>
+				<h2 class="visually-hidden">Top level navigation menu</h4>
 				<ul class="nav">
 				{%- for entry in collections.all | eleventyNavigation %}
 					<li class="nav-item nav-text" style="font-size: 1.2rem;"><a href="{{ entry.url }}" style="color: var( {{ entry.color }} ) !important" {% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
