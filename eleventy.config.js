@@ -149,8 +149,8 @@ export default async function(eleventyConfig) {
 		});
 	});
 
-	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-		if(data.draft) {
+  	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
+		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
 			return false;
 		}
 	});
